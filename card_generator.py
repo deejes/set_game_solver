@@ -34,7 +34,7 @@ def visual_deck_creator(deck):
            card[j] = card_attributes[j][feature]
     return visual_deck
 
-visual_deck=visual_deck_creator(return_set_deck())
+visual_deck=visual_deck_creator(set_deck_creator())
 
 
 
