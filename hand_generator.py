@@ -94,3 +94,5 @@ def time_all_sets_deck():
 
 
 # time_all_sets_deck()
+
+#TODO - quickest way to find one. also, quicker ways to find all?
