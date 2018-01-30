@@ -1,5 +1,6 @@
-from card_generator import set_deck_creator
+from time import time
 import random
+from card_generator import set_deck_creator
 
 deck = set_deck_creator()
 
@@ -29,7 +30,7 @@ assert cards_set_bool(true_set) is True
 assert cards_set_bool(true_set1) is True
 
 
-# given a list of 3 cards, return if they are unique
+# given a list of 3 cards, return if there are any duplicates
 def cards_unique(cards):
     string_cards = []
 
@@ -47,7 +48,8 @@ assert cards_unique(unique_set) is True
 assert cards_unique(non_unique_set) is False
 assert cards_unique(non_unique_set1) is False
 
-# finds a set in given list of cards.
+
+# finds all sets in given list of cards.
 def find_set(cards):
     nums = 0
     for x in cards:
@@ -55,16 +57,40 @@ def find_set(cards):
             for z in cards:
                 if cards_unique([x, y, z]):
                     if cards_set_bool([x, y, z]):
-                        print([x, y, z])
+                        # print([x, y, z])
                         nums += 1
     return nums
 
 # the deck has 81 cards, so there are 81*80*1 possible sets
 # for any two cards there will always be a unique third card
 # that completes the set.
+# assert (find_set(deck) == 6480) is True
+# find_set(deal_n_cards(deck,12))
 
 
-assert (find_set(deck) == 6480) is True
+# time to find all sets 100 groups of 12 cards, 10 times
+def time_all_set_12():
+    times = []
+    for x in range(10):
+        t0 = time()
+        for y in range(100):
+            find_set(deal_n_cards(deck, 12))
+        t1 = time()
+        times.append(t1-t0)
+    print(sum(times)/len(times))
 
 
+# time_all_set_12()
 
+def time_all_sets_deck():
+    times = []
+    for x in range(5):
+        random.shuffle(deck)
+        t0 = time()
+        find_set(deck)
+        t1 = time()
+        times.append(t1-t0)
+    print(sum(times) / len(times))
+
+
+# time_all_sets_deck()
